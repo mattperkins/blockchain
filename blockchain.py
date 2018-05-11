@@ -29,20 +29,15 @@ def get_user_amount():
 tx_amount = get_user_amount()
 add_value(tx_amount)
 
-# Get the second transaction input and add the value to the *blockchain list
-tx_amount = get_user_amount()
-add_value(last_transaction=get_last_blockchain_value(), transaction_amount=tx_amount)
 
-# Get the third transaction input and add the value to the *blockchain list
-tx_amount = get_user_amount()
-add_value(tx_amount, get_last_blockchain_value())
-
-# Output the blockchain list to the console
-# print(blockchain)
-
-for block in blockchain:
-    print('Outputting block')
-    print(block)
+while True:
+    tx_amount = get_user_amount()
+    add_value(tx_amount, get_last_blockchain_value())
+    
+    # Output blockchain list to console
+    for block in blockchain:
+        print('Outputting block')
+        print(block)
 
 print('Done!')
 
