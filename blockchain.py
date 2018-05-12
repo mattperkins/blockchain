@@ -11,13 +11,15 @@ def get_last_blockchain_value():
 # This function accepts two args
 # One required (transaction_amount) and one *optional (last_transaction)
 # *optional because it has a default value of 1
-def add_value(transaction_amount, last_transaction=[1]):
+def add_transaction(transaction_amount, last_transaction=[1]):
     """ Append the new and last value to the blockchain
 
         Arguments:
             :transaction_amount: The amount that should be added
             :last_transaction: The last blockchain transaction (default [1])
     """
+    if last_transaction == None:
+        last_transaction = [1]
     blockchain.append([last_transaction, transaction_amount])
 
 
@@ -29,7 +31,7 @@ def get_transaction_value():
 
 
 def get_user_choice():
-    user_input = input("Your choice...")
+    user_input = input("Choose option and press enter to continue: ")
     return user_input
 
 
@@ -40,26 +42,21 @@ def print_blockchain_elements():
         print(block)
  
 
-# Get the first transaction input and add the value to the *blockchain list
-tx_amount = get_transaction_value()
-add_value(tx_amount)
-
-
 while True:
-    print('Please choose:')
+    print('Options: ')
     print("1. Add a new transaction value")
     print("2. Output the blockchain blocks")
     print("q: Quit")
     user_choice = get_user_choice()
     if user_choice == '1':
         tx_amount = get_transaction_value()
-        add_value(tx_amount, get_last_blockchain_value())
+        add_transaction(tx_amount, get_last_blockchain_value())
     elif user_choice == '2':
         print_blockchain_elements()
     elif user_choice == 'q':
         break
     else:
         print('Input was invalid, please choose an option from the menu')
-    print('Choice registered')
+    print('Registered! Please continue: ')
     
 print('Done!')
